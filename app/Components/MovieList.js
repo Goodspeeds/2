@@ -5,7 +5,7 @@
 'use strict';
 
 import styles from '../Styles/Main';
-
+import MovieDetail from './MovieDetail';
 import React, {
   StyleSheet,
   Text,
@@ -13,6 +13,7 @@ import React, {
   ListView,
   Image,
   ActivityIndicatorIOS,
+  TouchableHighlight
 } from 'react-native';
 
 const REQUEST_URL = 'https://api.douban.com/v2/movie/top250';
@@ -54,11 +55,30 @@ class MovieList extends React.Component {
  		.done()
  	}
 
+showMovieDetail(movie){
+  this.props.navigator.push({
+      title:movie.title,
+      component:MovieDetail,
+      passProps:{movie},
+  });
+}
+
+
+
+
+
 renderMovieList(movie){
 	return(
+    <TouchableHighlight
+          underlayColor="rgba(34,26,38,0.1)"
+          onPress={() => this.showMovieDetail(movie)}
+            /*{
+            console.log(`<${movie.title}>被点了！`)
+          }}*/
+      >
 <View style={styles.item}>
-<View style={styles.itemImage}>
- 	<Image
+  <View style={styles.itemImage}>
+ 	  <Image
  		source={{uri:movie.images.large}}
  		style={styles.image}
  		/>
@@ -72,6 +92,7 @@ renderMovieList(movie){
 			<Text style={styles.redText}>{movie.rating.average}</Text>
  		</View>
  		</View>
+    </TouchableHighlight>
 		);
 }
 
@@ -79,20 +100,22 @@ renderMovieList(movie){
   render() {
   	if (!this.state.loaded) {
   		return(
-  			<View style={styles.container}>
+  			<View style={[styles.container,{paddingTop:30}]}>
 				<View style={styles.loading}>
 					
           <ActivityIndicatorIOS 
-            size='large'/>
+            size='large'
+            color='#6435c9'
+            />
 				</View>
   			</View>
   			);
   	}
     return (
-      <View style={styles.container}>
+      <View style={[styles.container,{paddingTop:60}]}>
       <ListView
       dataSource={this.state.movies}
-      renderRow={this.renderMovieList}
+      renderRow={this.renderMovieList.bind(this)}
  />
       </View>
     );

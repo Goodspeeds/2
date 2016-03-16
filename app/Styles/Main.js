@@ -9,7 +9,7 @@ const styles = StyleSheet.create({
   	flexDirection:'row',
     flex: 1,
     backgroundColor: '#eae7ff',
-    paddingTop:23,
+   
   
   },
 
@@ -29,7 +29,7 @@ item:{
 	borderBottomWidth:1,
 	borderColor:'rgba(100,52,201,0.1)',
     paddingBottom:6,
-    marginBottom:6,
+    paddingTop:6,
     flex:1,
 
 },

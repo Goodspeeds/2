@@ -13,6 +13,7 @@ import React, {
   ListView,
   Image,
   ActivityIndicatorIOS,
+  TouchableHighlight
 } from 'react-native';
 
 const REQUEST_URL = 'https://api.douban.com/v2/movie/us_box';
@@ -56,6 +57,15 @@ class USBox extends React.Component {
 
 renderMovieList(movie){
 	return(
+
+    <TouchableHighlight
+          underlayColor="rgba(34,26,38,0.1)"
+          onPress={() => {
+            console.log(`<${movie.title}>被点了！`)
+          }}
+      >
+
+
 <View style={styles.item}>
 <View style={styles.itemImage}>
  	<Image
@@ -72,6 +82,7 @@ renderMovieList(movie){
 			<Text style={styles.redText}>{movie.subject.rating.average}</Text>
  		</View>
  		</View>
+      </TouchableHighlight>
 		);
 }
 

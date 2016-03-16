@@ -7,7 +7,8 @@
 import styles from './app/Styles/Main';
 import MovieList from './app/Components/MovieList';
 import USBox from './app/Components/USBox';
-import icons from './app/Asseets/Icon'
+import icons from './app/Asseets/Icon';
+import Featured from './app/Components/Featured';
 
 import React, {
   AppRegistry,
@@ -27,7 +28,7 @@ class hhhhhh extends Component {
  constructor(props){
  	super(props);
  	this.state = {
-       selectedTab:'us_box'
+       selectedTab:'featured'
 
  	};
 /* 	let movies = [
@@ -62,7 +63,7 @@ class hhhhhh extends Component {
 		}
 		}
     	>
-    	<MovieList />
+    	<Featured />
 		</TabBarIOS.Item>
 		<TabBarIOS.Item 
         icon={{uri:icons.board,scale:4.6}}
